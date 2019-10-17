@@ -14,7 +14,7 @@ server.use(express.json());
 server.use('/accounts', accountsRouter);
 server.use('/music', musicRouter);
 
-server.get('/', express.static('./docs'));
+server.use('/', express.static('./docs'));
 
 /**
  * get song
