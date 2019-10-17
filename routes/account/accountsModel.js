@@ -11,6 +11,7 @@ module.exports = {
 function createAccount(account) {
     return db('accounts')
         .insert(account)
+        .returning("id")
         .then(ids => findById(ids[0]))
 }
 
