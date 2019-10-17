@@ -1,6 +1,6 @@
 [
   {
-    "type": "get",
+    "type": "post",
     "url": "/accounts/login",
     "title": "Log in to account",
     "version": "0.1.0",
@@ -48,7 +48,7 @@
       "examples": [
         {
           "title": "Successful response: ",
-          "content": " HTTP/1.1 200 OK\n{\n  \"message\": \"Welcome, Tahani!\"\n  \"token\": \"a really long string of letters and numbers, separated by dots\"",
+          "content": " HTTP/1.1 200 OK\n{\n  \"message\": \"Welcome, Tahani!\"\n  \"token\": \"a really long string of letters and numbers, separated by dots\"\n}",
           "type": "json"
         }
       ]
@@ -57,7 +57,7 @@
     "groupTitle": "Accounts"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/accounts/register",
     "title": "Register account",
     "version": "0.1.0",
@@ -78,7 +78,7 @@
             "type": "String",
             "optional": false,
             "field": "email",
-            "description": "<p>User's email</p>"
+            "description": "<p>User's email, must be unique</p>"
           },
           {
             "group": "Parameter",
@@ -88,7 +88,14 @@
             "description": "<p>User's password</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Example body:",
+          "content": "{\n\t\"name\": \"Janet\",\n\t\"email\": \"cactus@wikipedia.org\",\n\t\"password\": \"themoreyouknow\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "success": {
       "fields": {

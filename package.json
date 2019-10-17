@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "server": "nodemon index.js",
-    "docs": "apidoc -i ./routes -o ./docs"
+    "docs": "apidoc -i ./routes -o ./docs",
+    "start": "node index.js"
   },
   "devDependencies": {
     "apidoc": "^0.17.7",
@@ -19,6 +20,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.1",
     "jsonwebtoken": "^8.5.1",

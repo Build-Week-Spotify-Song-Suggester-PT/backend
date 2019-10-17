@@ -10,14 +10,21 @@ const db = require('./accountsModel.js');
 
 // ---------- POST - register account
 /**
- * @api {get} /accounts/register Register account
+ * @api {post} /accounts/register Register account
  * @apiVersion 0.1.0
  * @apiName Register
  * @apiGroup Accounts
  * 
  * @apiParam {String} name User's name or preferred display name
- * @apiParam {String} email User's email
+ * @apiParam {String} email User's email, must be unique
  * @apiParam {String} password User's password
+ * 
+ * @apiParamExample Example body:
+ * {
+ *	"name": "Janet",
+ *	"email": "cactus@wikipedia.org",
+ *	"password": "themoreyouknow"
+ * }
  * 
  * @apiSuccess {Number} id Account id
  * @apiSuccess {String} name User's name
@@ -27,11 +34,11 @@ const db = require('./accountsModel.js');
  * @apiSuccessExample Successful response: 
  *  HTTP/1.1 201 OK
  * {
-  "id": 8,
-  "name": "Janet",
-  "email": "cactus@wikipedia.org",
-  "token": "a really long string of letters and numbers, separated by dots"
-}
+ *   "id": 8,
+ *   "name": "Janet",
+ *   "email": "cactus@wikipedia.org",
+ *   "token": "a really long string of letters and numbers, separated by dots"
+ * }
 */
 router.post('/register', (req, res) => {
     let account = req.body;
@@ -50,7 +57,7 @@ router.post('/register', (req, res) => {
 
 // ---------- POST - log in to account  
 /**
- * @api {get} /accounts/login Log in to account
+ * @api {post} /accounts/login Log in to account
  * @apiVersion 0.1.0
  * @apiName Login
  * @apiGroup Accounts
@@ -63,8 +70,9 @@ router.post('/register', (req, res) => {
  *  @apiSuccessExample Successful response: 
  *  HTTP/1.1 200 OK
  * {
-  "message": "Welcome, Tahani!"
-  "token": "a really long string of letters and numbers, separated by dots"
+ *   "message": "Welcome, Tahani!"
+ *   "token": "a really long string of letters and numbers, separated by dots"
+ * }
 */
   router.post('/login', (req, res) => {
     const { email, password } = req.body;

@@ -18,4 +18,12 @@ server.get('/', (req, res) => {
     res.send(`API is running! Woohoo!`)
 });
 
+/**
+ * get song
+ * return fav songs
+ *  easy to access the audio features
+ * 
+ * 
+ */
+
 module.exports = server;
