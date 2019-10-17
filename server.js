@@ -14,9 +14,7 @@ server.use(express.json());
 server.use('/accounts', accountsRouter);
 server.use('/music', musicRouter);
 
-server.get('/', (req, res) => {
-    res.send(`API is running! Woohoo!`)
-});
+server.get('/', express.static('./docs'));
 
 /**
  * get song
