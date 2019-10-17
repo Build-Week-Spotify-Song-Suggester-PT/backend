@@ -21,9 +21,9 @@ const db = require('./accountsModel.js');
  * 
  * @apiParamExample Example body:
  * {
- *	"name": "Janet",
- *	"email": "cactus@wikipedia.org",
- *	"password": "themoreyouknow"
+ *	"name": "Chidi",
+ *	"email": "c.anagonye@stjohns.edu",
+ *	"password": "trolleyproblem"
  * }
  * 
  * @apiSuccess {Number} id Account id
@@ -35,8 +35,8 @@ const db = require('./accountsModel.js');
  *  HTTP/1.1 201 OK
  * {
  *   "id": 8,
- *   "name": "Janet",
- *   "email": "cactus@wikipedia.org",
+ *   "name": "Chidi",
+ *   "email": "c.anagonye@stjohns.edu",
  *   "token": "a really long string of letters and numbers, separated by dots"
  * }
 */
