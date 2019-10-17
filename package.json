@@ -11,13 +11,13 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "apidoc": "^0.17.7",
     "cross-env": "^6.0.3",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
