@@ -51,7 +51,7 @@ router.post('/register', (req, res) => {
           })
           .catch(err => {
             console.log(err)
-            res.status(500).json({error: "Error creating account."})
+            res.status(500).json({error: err})
           })
   });
 
@@ -83,7 +83,7 @@ router.post('/register', (req, res) => {
               const token = generateToken(user)
               res.status(200).json({ message: `Welcome ${user.name}!`, token: token });
           } else {
-              res.status(401).json({ message: 'Unable to log in to account.' });
+              res.status(401).json({ message: 'Unable to log in to account.'});
           }
         })
         .catch(error => {
