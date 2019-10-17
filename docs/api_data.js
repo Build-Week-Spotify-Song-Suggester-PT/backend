@@ -92,7 +92,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Example body:",
-          "content": "{\n\t\"name\": \"Janet\",\n\t\"email\": \"cactus@wikipedia.org\",\n\t\"password\": \"themoreyouknow\"\n}",
+          "content": "{\n\t\"name\": \"Chidi\",\n\t\"email\": \"c.anagonye@stjohns.edu\",\n\t\"password\": \"trolleyproblem\"\n}",
           "type": "json"
         }
       ]
@@ -133,7 +133,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Successful response: ",
-          "content": " HTTP/1.1 201 OK\n{\n  \"id\": 8,\n  \"name\": \"Janet\",\n  \"email\": \"cactus@wikipedia.org\",\n  \"token\": \"a really long string of letters and numbers, separated by dots\"\n}",
+          "content": " HTTP/1.1 201 OK\n{\n  \"id\": 8,\n  \"name\": \"Chidi\",\n  \"email\": \"c.anagonye@stjohns.edu\",\n  \"token\": \"a really long string of letters and numbers, separated by dots\"\n}",
           "type": "json"
         }
       ]

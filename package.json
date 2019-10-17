@@ -1,5 +1,5 @@
 {
-  "name": "PT_BE_Build_Week",
+  "name": "SongSight_Backend",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/fskeen/spotify-suggester-BE.git",
