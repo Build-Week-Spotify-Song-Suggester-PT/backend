@@ -2,12 +2,12 @@
 exports.up = function(knex) {
     return knex.schema.createTable('accounts', account => {
         account.increments('id');
-        account.string('name', 255)
+        account.string('name')
             .notNullable();
-        account.string('email', 255)
+        account.string('email')
             .notNullable()
             .unique();
-        account.string('password', 255)
+        account.string('password')
             .notNullable();
     })
 };
