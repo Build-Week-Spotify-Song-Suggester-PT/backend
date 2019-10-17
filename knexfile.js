@@ -23,9 +23,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: {
-      filename: './database/database.db3',
-    },
+    connection: process.env.DATABASE_URL,
     pool: {
       afterCreate: (conn, done) => {
         conn.run('PRAGMA foreign_keys = ON', done);
