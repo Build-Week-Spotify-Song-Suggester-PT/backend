@@ -209,6 +209,16 @@
     "groupTitle": "Accounts"
   },
   {
+    "type": "delete",
+    "url": "/music/",
+    "title": "Delete a song from favorites (WIP)",
+    "version": "0.1.0",
+    "name": "Delete_a_song",
+    "group": "Music",
+    "filename": "routes/music/musicRouter.js",
+    "groupTitle": "Music"
+  },
+  {
     "type": "post",
     "url": "/music/save",
     "title": "Register account",
