@@ -160,7 +160,7 @@ router.get('/:id/favorites', authenticate, (req, res) => {
  * @apiGroup Accounts
  * 
  * @apiSuccess {string} message A "sorry to see you go" goodbye message.
- *  @apiSuccessExample Successful response: 
+ * @apiSuccessExample Successful response: 
  *  HTTP/1.1 200 OK
  * {
  *    "message": "We're sorry to see you go!"

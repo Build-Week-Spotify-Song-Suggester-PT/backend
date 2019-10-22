@@ -168,6 +168,15 @@ router.post('/similar', (req, res) => {
         .catch(err => res.status(500).json({error: err}))
 })
 
+
+// ---------- DELETE - delete a song from favorites 
+/**
+ * @api {delete} /music/ Delete a song from favorites (WIP)
+ * @apiVersion 0.1.0
+ * @apiName Delete a song
+ * @apiGroup Music
+*/
+
 //////////////////////////////////////////////////////////////////////////
 
 
