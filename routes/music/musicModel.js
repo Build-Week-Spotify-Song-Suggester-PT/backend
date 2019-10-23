@@ -37,5 +37,5 @@ function associateSongToAccount (song_id, account_id) {
     }
     return db('account_to_music')
         .insert(association)
-        .returning('id')
+        .returning('account_id')
 }
