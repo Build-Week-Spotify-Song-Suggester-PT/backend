@@ -154,10 +154,12 @@ router.get('/:id/favorites', authenticate, (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 /**
- * @api {delete} /accounts/:id Delete account (WIP)
+ * @api {delete} /accounts/:id Delete account
  * @apiVersion 0.1.0
  * @apiName Delete account
  * @apiGroup Accounts
+ * 
+ * @apiParam {Number} id User's unique account ID. Endpoint will check to make sure you're logged into the account you're trying to delete.
  * 
  * @apiSuccess {string} message A "sorry to see you go" goodbye message.
  * @apiSuccessExample Successful response: 
@@ -166,11 +168,17 @@ router.get('/:id/favorites', authenticate, (req, res) => {
  *    "message": "We're sorry to see you go!"
  * }
 */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
     const id = req.params.id
-    db.deleteAccount(id)
+    if (id == req.account.id) {
+        db.deleteAccount(id)
         .then(() => res.status(200).json({message: "We're sorry to see you go!"}))
         .catch(err => console.log(err))
+    } else {
+        // console.log(id, req.account.id)
+        return res.status(403).json({message: "You must be logged into the account you wish to delete."})
+    }
+    
 })
 
 ////////////////////////////////////////////////////////////

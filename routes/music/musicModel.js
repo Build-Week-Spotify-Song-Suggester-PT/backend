@@ -20,7 +20,7 @@ function saveSong(song, account_id) {
         .insert(song)
         .returning('id')
         .then(ids => {
-            console.log("???", ids[0])
+            // console.log("???", ids[0])
             return associateSongToAccount(ids[0], account_id)
         })
 }
