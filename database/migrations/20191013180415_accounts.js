@@ -51,7 +51,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('accountToMusic')
+        .dropTableIfExists('account_to_music')
         .dropTableIfExists('music')
         .dropTableIfExists('accounts');
 };
