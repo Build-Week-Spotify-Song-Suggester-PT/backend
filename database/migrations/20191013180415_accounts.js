@@ -34,18 +34,18 @@ exports.up = function(knex) {
         tbl.decimal('valence', 10)
         tbl.decimal('popularity', 10)
     })
-    .createTable('accountToMusic', tbl => {
+    .createTable('account_to_music', tbl => {
         tbl.integer('account_id')
             .unsigned()
             .references('id')
             .inTable('accounts')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
+            .onUpdate('cascade')
+            .onDelete('cascade');
         tbl.integer('song_id')
             .references('id')
             .inTable('music')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
+            .onUpdate('cascade')
+            .onDelete('cascade');
     })
 };
 
