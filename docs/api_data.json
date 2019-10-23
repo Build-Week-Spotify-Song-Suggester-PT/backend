@@ -6,19 +6,6 @@
     "version": "0.1.0",
     "name": "Delete_account",
     "group": "Accounts",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>User's unique account ID. Endpoint will check to make sure you're logged into the account you're trying to delete.</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
@@ -35,6 +22,63 @@
         {
           "title": "Successful response: ",
           "content": " HTTP/1.1 200 OK\n{\n   \"message\": \"We're sorry to see you go!\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/account/accountsRouter.js",
+    "groupTitle": "Accounts"
+  },
+  {
+    "type": "put",
+    "url": "/accounts/:id",
+    "title": "Edit account (WIP)",
+    "version": "0.1.0",
+    "name": "Edit_account",
+    "group": "Accounts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "name",
+            "description": "<p>The new name the user wants on their account</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>The new email the user wants on their account</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "password",
+            "description": "<p>The new password the user wants on their account</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>An &quot;Account information successfully updated.&quot; message.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful response: ",
+          "content": " HTTP/1.1 200 OK\n{\n   \"message\": \"Account information successfully updated.\"\n}",
           "type": "json"
         }
       ]
