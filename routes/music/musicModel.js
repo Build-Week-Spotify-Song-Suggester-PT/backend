@@ -9,7 +9,7 @@ module.exports = {
 // DATABASE FUNCTIONS BELOW
 
 function getSavedSongs(id) {
-    return db('accountToMusic')
+    return db('account_to_music')
         .select()
         .where({ "account_id": id })
         .join("music", "song_id", "music.id")
