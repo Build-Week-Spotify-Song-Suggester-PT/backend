@@ -2,10 +2,23 @@
   {
     "type": "delete",
     "url": "/accounts/:id",
-    "title": "Delete account (WIP)",
+    "title": "Delete account",
     "version": "0.1.0",
     "name": "Delete_account",
     "group": "Accounts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User's unique account ID. Endpoint will check to make sure you're logged into the account you're trying to delete.</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
