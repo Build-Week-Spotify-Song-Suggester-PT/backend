@@ -14,6 +14,7 @@ function authenticate (req, res, next) {
         jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if(err) {
               res.status(401).json({ message: 'Invalid Credentials.' });
+              console.log(err)
             } else {
               req.account = {  id: decodedToken.id, email: decodedToken.email }
               next();
