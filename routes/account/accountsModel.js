@@ -5,7 +5,8 @@ module.exports = {
     createAccount,
     findById,
     findByEmail,
-    deleteAccount
+    deleteAccount,
+    editAccount
 };
 
 // DATABASE FUNCTIONS BELOW
@@ -40,4 +41,10 @@ function deleteAccount (id) {
     return db('accounts')
         .where({ id })
         .del();
+}
+
+function editAccount (id, accountInfo) {
+    return db('accounts')
+        .where({ id })
+        .update(accountInfo);
 }

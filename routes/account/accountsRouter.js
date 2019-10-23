@@ -159,8 +159,6 @@ router.get('/:id/favorites', authenticate, (req, res) => {
  * @apiName Delete account
  * @apiGroup Accounts
  * 
- * @apiParam {Number} id User's unique account ID. Endpoint will check to make sure you're logged into the account you're trying to delete.
- * 
  * @apiSuccess {string} message A "sorry to see you go" goodbye message.
  * @apiSuccessExample Successful response: 
  *  HTTP/1.1 200 OK
@@ -177,6 +175,36 @@ router.delete('/:id', authenticate, (req, res) => {
     } else {
         // console.log(id, req.account.id)
         return res.status(403).json({message: "You must be logged into the account you wish to delete."})
+    }
+    
+})
+/**
+ * @api {put} /accounts/:id Edit account (WIP)
+ * @apiVersion 0.1.0
+ * @apiName Edit account
+ * @apiGroup Accounts
+ * 
+ * @apiParam {String} [name] The new name the user wants on their account
+ * @apiParam {String} [email] The new email the user wants on their account
+ * @apiParam {String} [password] The new password the user wants on their account
+ * 
+ * @apiSuccess {string} message An "Account information successfully updated." message.
+ * @apiSuccessExample Successful response: 
+ *  HTTP/1.1 200 OK
+ * {
+ *    "message": "Account information successfully updated."
+ * }
+*/
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const accountInfo = req.body
+    if (id) {
+        db.editAccount(id, accountInfo)
+        .then(() => res.status(200).json({message: "Account information successfully updated."}))
+        .catch(err => console.log(err))
+    } else {
+        // console.log(id, req.account.id)
+        return res.status(403).json({message: "You must be logged into the account you wish to edit."})
     }
     
 })
