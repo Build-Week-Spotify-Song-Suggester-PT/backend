@@ -2,11 +2,10 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secrets = require('../../auth/secrets');
+const { authenticate } = require('../../auth/middleware')
 
 const db = require('./accountsModel.js');
-// const authenticate = require('../auth/middleware.js'); NEED NAMED EXPORT/IMPORT
-
-// router endpoints here
+const musicDB = require('../music/musicModel')
 
 // ---------- POST - register account
 /**
@@ -52,8 +51,8 @@ router.post('/register', (req, res) => {
           .catch(err => {
             console.log(err)
             res.status(500).json({error: err})
-          })
-  });
+        })
+});
 
 // ---------- POST - log in to account  
 /**
@@ -65,6 +64,7 @@ router.post('/register', (req, res) => {
  * @apiParam {String} email User's email
  * @apiParam {String} password User's password
  * 
+ * @apiSuccess {Number} id User's unique account ID
  * @apiSuccess {String} welcome Welcome message that includes the user's name
  * @apiSuccess {String} token Login token generated for the user
  *  @apiSuccessExample Successful response: 
@@ -74,34 +74,117 @@ router.post('/register', (req, res) => {
  *   "token": "a really long string of letters and numbers, separated by dots"
  * }
 */
-  router.post('/login', (req, res) => {
-    const { email, password } = req.body;
+router.post('/login', (req, res) => {
+const { email, password } = req.body;
+
+    db.findByEmail({email})
+    .first()
+    .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+            const token = generateToken(user)
+            res.status(200).json({id: user.id, message: `Welcome ${user.name}!`, token: token });
+        } else {
+            res.status(401).json({ message: 'Unable to log in to account.'});
+        }
+    })
+    .catch(error => {
+        res.status(500).json(error);
+    });
+});
+
+// GET ALL ACCOUNT INFO -- WIP
+// router.get('/:id', authenticate, (req, res) => {
+// const { id } = req.params.id;
+// let accountInfo = []
+//     db.findById(id)
+//     .then(user => {
+//         // musicDB.getSavedSongs(id)
+//         // .then(songs => {
+//         //     res.status(200).json(songs)
+//         // })
+//         // .catch(err => res.status(500).json(err))
+
+//         res.status(200).json(user);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     });
+// });
   
-      db.findByEmail({email})
-      .then(user => {
-          if (user && bcrypt.compareSync(password, user.password)) {
-              const token = generateToken(user)
-              res.status(200).json({id: user.id, message: `Welcome ${user.name}!`, token: token });
-          } else {
-              res.status(401).json({ message: 'Unable to log in to account.'});
-          }
+// ---------- GET - get all saved songs by account ID
+/**
+ * @api {get} /accounts/:id/favorites Get all songs saved to favorites
+ * @apiVersion 0.1.0
+ * @apiName Get account info
+ * @apiGroup Accounts
+ * 
+ * @apiSuccess {Objects[]} favorites An array containing all the user's saved songs. Each object in the array is a single song with a list of all its audio attributes.
+ *  @apiSuccessExample Successful response: 
+ *  HTTP/1.1 200 OK
+ * {
+ *    [
+ *       {
+ *         "track_id": "2fWgvpvay6JWLboUtfvitp",
+ *          "track_name": "Magic",
+ *          "artist_name": "Craig David",
+ *          "acousticness": 0.0898,
+ *          "danceability": 0.716,
+ *          "duration_ms": 193001,
+ *          "energy": 0.839,
+ *          "instrumentalness": 0.00000336,
+ *          "key": 10,
+ *          "liveness": 0.0711,
+ *          "loudness": -4.945,
+ *          "mode": false,
+ *          "speechiness": 0.0379,
+ *          "tempo": 107.011,
+ *          "time_signature": 4,
+ *          "valence": 0.703,
+ *          "popularity": 50
+ *        }
+ *    ]
+ * }
+*/
+router.get('/:id/favorites', authenticate, (req, res) => {
+    const id = req.params.id
+    musicDB.getSavedSongs(id)
+        .then(songs => {
+            res.status(200).json(songs)
         })
-        .catch(error => {
-          res.status(500).json(error);
-        });
-  });
-  
+        .catch(err => res.status(500).json(err))
+})
+/**
+ * @api {delete} /accounts/:id Delete account (WIP)
+ * @apiVersion 0.1.0
+ * @apiName Delete account
+ * @apiGroup Accounts
+ * 
+ * @apiSuccess {string} message A "sorry to see you go" goodbye message.
+ * @apiSuccessExample Successful response: 
+ *  HTTP/1.1 200 OK
+ * {
+ *    "message": "We're sorry to see you go!"
+ * }
+*/
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
+    db.deleteAccount(id)
+        .then(() => res.status(200).json({message: "We're sorry to see you go!"}))
+        .catch(err => console.log(err))
+})
 
+////////////////////////////////////////////////////////////
 
-  function generateToken(user) {
+function generateToken(user) {
     const payload = {
-        username: user.email,
+        id: user.id,
+        email: user.email
     };
     const options = {
         expiresIn: '1d',
     };
     return jwt.sign(payload, secrets.jwtSecret, options);
-  }
-  
-  module.exports = router;
+}
+
+module.exports = router;
   

@@ -1,9 +1,11 @@
 const db = require('../../database/dbConfig.js');
 
+
 module.exports = {
     createAccount,
     findById,
-    findByEmail
+    findByEmail,
+    deleteAccount
 };
 
 // DATABASE FUNCTIONS BELOW
@@ -25,4 +27,17 @@ function findByEmail(email) {
     return db('accounts')
         .where(email)
         .first();
+}
+
+// function getAccountInfo(id) {
+//     const accountQuery = db('accounts')
+//         .where({ id })
+//         .first();
+//     return Promise.all([accountQuery, ])
+// }
+
+function deleteAccount (id) {
+    return db('accounts')
+        .where({ id })
+        .del();
 }

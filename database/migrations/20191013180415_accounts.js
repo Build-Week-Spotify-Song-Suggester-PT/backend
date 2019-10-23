@@ -1,7 +1,8 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('accounts', account => {
-        account.increments('id');
+    return knex.schema
+    .createTable('accounts', account => {
+        account.increments();
         account.string('name')
             .notNullable();
         account.string('email')
@@ -10,9 +11,53 @@ exports.up = function(knex) {
         account.string('password')
             .notNullable();
     })
+    .createTable('music', tbl => {
+        tbl.increments();
+        tbl.string('track_id')
+            .notNullable();
+        tbl.string('track_name')
+            .notNullable();
+        tbl.string('artist_name')
+            .notNullable();
+        tbl.decimal('acousticness', 10)
+        tbl.decimal('danceability', 10)
+        tbl.decimal('duration_ms', 10)
+        tbl.decimal('energy', 10)
+        tbl.decimal('instrumentalness', 10)
+        tbl.decimal('key', 10)
+        tbl.decimal('liveness', 10)
+        tbl.decimal('loudness', 10)
+        tbl.boolean('mode')
+        tbl.decimal('speechiness', 10)
+        tbl.decimal('tempo', 10)
+        tbl.decimal('time_signature', 10)
+        tbl.decimal('valence', 10)
+        tbl.decimal('popularity', 10)
+    })
+    .createTable('accountToMusic', tbl => {
+        tbl.integer('account_id')
+            .unsigned()
+            .references('id')
+            .inTable('accounts')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE');
+        tbl.string('song_id')
+            .references('id')
+            .inTable('music')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE');
+    })
 };
 
 exports.down = function(knex) {
-    knex.schema
+    return knex.schema
+        .dropTableIfExists('accountToMusic')
+        .dropTableIfExists('music')
         .dropTableIfExists('accounts');
 };
+
+
+/**
+ * select 5 things you like: high energy, danceability, low mood
+ * shows up on 
+ */
