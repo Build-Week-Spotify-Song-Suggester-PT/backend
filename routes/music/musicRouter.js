@@ -12,12 +12,13 @@ module.exports = router;
 
 // ---------- POST - save song to favs
 /**
- * @api {post} /music/save Register account
+ * @api {post} /music/save Save song to favorites
  * @apiVersion 0.1.0
- * @apiName Save song
+ * @apiName Save song to favorites
  * @apiGroup Music
  * 
  * @apiParam {String} track_id The spotify track_id unique to each song.
+ * @apiParam {Number} [account_id] THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.
  * 
  * @apiParamExample Example body:
  * {

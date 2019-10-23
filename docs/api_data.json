@@ -221,9 +221,9 @@
   {
     "type": "post",
     "url": "/music/save",
-    "title": "Register account",
+    "title": "Save song to favorites",
     "version": "0.1.0",
-    "name": "Save_song",
+    "name": "Save_song_to_favorites",
     "group": "Music",
     "parameter": {
       "fields": {
@@ -234,6 +234,13 @@
             "optional": false,
             "field": "track_id",
             "description": "<p>The spotify track_id unique to each song.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "account_id",
+            "description": "<p>THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.</p>"
           }
         ]
       },

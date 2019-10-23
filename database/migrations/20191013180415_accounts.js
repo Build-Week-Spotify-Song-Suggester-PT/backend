@@ -41,7 +41,7 @@ exports.up = function(knex) {
             .inTable('accounts')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
-        tbl.string('song_id')
+        tbl.integer('song_id')
             .references('id')
             .inTable('music')
             .onUpdate('CASCADE')
