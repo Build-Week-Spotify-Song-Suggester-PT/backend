@@ -38,7 +38,7 @@ router.post('/save', authenticate, (req, res) => {
     const account_id = req.account.id
     axios.get(`https://song-suggester.herokuapp.com/getlike?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=0`)
         .then(resp => {
-            db.saveSong(resp.data.seed, account_id)
+            db.saveSong(resp.data.seed, account_id, track_id)
                 .then(() => {
                     res.status(201).json({message: "Song saved to favorites."})
                 })
@@ -170,24 +170,4 @@ router.post('/similar', (req, res) => {
 })
 
 
-// ---------- DELETE - delete a song from favorites 
-/**
- * @api {delete} /music/ Delete a song from favorites (WIP)
- * @apiVersion 0.1.0
- * @apiName Delete a song
- * @apiGroup Music
-*/
-
 //////////////////////////////////////////////////////////////////////////
-
-
-/** 
- * -- get ONE song, with data attributes
- * -- get songs by feature
- * 
- * -- save a song
- * -- save multiple songs
- * 
- * 
- * 
-*/

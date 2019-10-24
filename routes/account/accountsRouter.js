@@ -154,6 +154,32 @@ router.get('/:id/favorites', authenticate, (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 /**
+ * @api {delete} /accounts/:id Delete song from favorites
+ * @apiVersion 0.1.0
+ * @apiName Delete song from favorites
+ * @apiGroup Accounts
+ * 
+ * @apiSuccess {string} message A "song removed from favorites" goodbye message.
+ * @apiSuccessExample Successful response: 
+ *  HTTP/1.1 200 OK
+ * {
+ *    "message": "Song deleted from favorites!"
+ * }
+*/
+router.delete('/:id/favorites/:track_id', authenticate, (req, res) => {
+    const id = req.params.id
+    const track_id = req.params.track_id
+    if (id == req.account.id) {
+        musicDB.deleteSongFromFaves(id, track_id)
+        .then(() => res.status(200).json({message: "Song deleted from favorites!"}))
+        .catch(err => console.log(err))
+    } else {
+        // console.log(id, req.account.id)
+        return res.status(403).json({message: "You must be logged in to delete songs from your favorites list."})
+    }
+    
+})
+/**
  * @api {delete} /accounts/:id Delete account
  * @apiVersion 0.1.0
  * @apiName Delete account
@@ -179,7 +205,7 @@ router.delete('/:id', authenticate, (req, res) => {
     
 })
 /**
- * @api {put} /accounts/:id Edit account (WIP)
+ * @api {put} /accounts/:id Edit account
  * @apiVersion 0.1.0
  * @apiName Edit account
  * @apiGroup Accounts
@@ -195,7 +221,7 @@ router.delete('/:id', authenticate, (req, res) => {
  *    "message": "Account information successfully updated."
  * }
 */
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const id = req.params.id
     const accountInfo = req.body
     if (id) {
