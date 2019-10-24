@@ -46,6 +46,8 @@ exports.up = function(knex) {
             .inTable('music')
             .onUpdate('cascade')
             .onDelete('cascade');
+        tbl.string('real_track_id')
+            .notNullable()
     })
 };
 

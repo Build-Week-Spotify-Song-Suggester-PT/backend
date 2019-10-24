@@ -30,9 +30,39 @@
     "groupTitle": "Accounts"
   },
   {
+    "type": "delete",
+    "url": "/accounts/:id",
+    "title": "Delete song from favorites",
+    "version": "0.1.0",
+    "name": "Delete_song_from_favorites",
+    "group": "Accounts",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>A &quot;song removed from favorites&quot; goodbye message.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful response: ",
+          "content": " HTTP/1.1 200 OK\n{\n   \"message\": \"Song deleted from favorites!\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/account/accountsRouter.js",
+    "groupTitle": "Accounts"
+  },
+  {
     "type": "put",
     "url": "/accounts/:id",
-    "title": "Edit account (WIP)",
+    "title": "Edit account",
     "version": "0.1.0",
     "name": "Edit_account",
     "group": "Accounts",
@@ -264,16 +294,6 @@
     },
     "filename": "routes/account/accountsRouter.js",
     "groupTitle": "Accounts"
-  },
-  {
-    "type": "delete",
-    "url": "/music/",
-    "title": "Delete a song from favorites (WIP)",
-    "version": "0.1.0",
-    "name": "Delete_a_song",
-    "group": "Music",
-    "filename": "routes/music/musicRouter.js",
-    "groupTitle": "Music"
   },
   {
     "type": "post",
