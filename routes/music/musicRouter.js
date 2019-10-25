@@ -160,7 +160,7 @@ router.post('/singletrack', (req, res) => {
 router.post('/similar', (req, res) => {
     const track_id = req.body.track_id
     const number_like = req.body.number_like
-    axios.get(`https://song-suggester.herokuapp.com/getlike?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=${number_like || 100}`)
+    axios.get(`https://song-suggester.herokuapp.com/get_like?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=${number_like || 100}`)
         .then(resp => {
             // console.log(resp.data)
             const song = resp.data
