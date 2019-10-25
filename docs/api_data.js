@@ -297,6 +297,70 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/music/mood",
+    "title": "Get songs by audio feature",
+    "version": "0.1.0",
+    "name": "Get_songs_by_audio_feature",
+    "group": "Music",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "feature",
+            "description": "<p>The audio feature you're requesting. Valid audio features: acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, valence, popularity.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "value",
+            "description": "<p>The value you want your feature to have. Acceptable values: high, medium, low. Used in the sense of &quot;high danceability&quot; or &quot;low acousticness.&quot;</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>By default, this endpoint will return 200 songs that match, but you can include this number to override that. Hard max of 500 songs.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example body:",
+          "content": "{\n\t\"feature\": \"acousticness\",\n\t\"value\": \"high\",\n\t\"limit\": 100\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "song",
+            "description": "<p>An array with all returned song objects, which each include tack info and audio features.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful response: ",
+          "content": " HTTP/1.1 200 OK\n[\n  {\n   \"track_id\": \"2fWgvpvay6JWLboUtfvitp\",\n   \"track_name\": \"Magic\",\n   \"artist_name\": \"Craig David\",\n   \"acousticness\": 0.0898,\n   \"danceability\": 0.716,\n   \"duration_ms\": 193001,\n   \"energy\": 0.839,\n   \"instrumentalness\": 0.00000336,\n   \"key\": 10,\n   \"liveness\": 0.0711,\n   \"loudness\": -4.945,\n   \"mode\": false,\n   \"speechiness\": 0.0379,\n   \"tempo\": 107.011,\n   \"time_signature\": 4,\n   \"valence\": 0.703,\n   \"popularity\": 50\n  }, {\n   \"track_id\": \"01RV4oaMhx0RXhSWqLUSwV\",\n   \"track_name\": \"Carta De Luto\",\n   \"artist_name\": \"Los Alegres De Teran\",\n   \"acousticness\": 0.733,\n   \"danceability\": 0.718,\n   \"duration_ms\": 163161,\n   \"energy\": 0.403,\n   \"instrumentalness\": 0.0,\n   \"key\": 5,\n   \"liveness\": 0.0414,\n   \"loudness\": -8.343,\n   \"mode\": true,\n   \"speechiness\": 0.0528,\n   \"tempo\": 125.453,\n   \"time_signature\": 4,\n   \"valence\": 0.963,\n   \"popularity\": 7    \n  }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/music/musicRouter.js",
+    "groupTitle": "Music"
+  },
+  {
+    "type": "post",
     "url": "/music/save",
     "title": "Save song to favorites",
     "version": "0.1.0",
@@ -394,7 +458,7 @@ define({ "api": [
             "type": "Object[]",
             "optional": false,
             "field": "song",
-            "description": "<p>An object that contains all the song info, including all audio features.</p>"
+            "description": "<p>An array with all returned song objects, which each include tack info and audio features.</p>"
           }
         ]
       },
