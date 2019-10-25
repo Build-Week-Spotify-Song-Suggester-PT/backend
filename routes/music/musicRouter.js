@@ -36,7 +36,7 @@ module.exports = router;
 router.post('/save', authenticate, (req, res) => {
     const track_id = req.body.track_id
     const account_id = req.account.id
-    axios.get(`https://song-suggester.herokuapp.com/getlike?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=0`)
+    axios.get(`https://song-suggester.herokuapp.com/get_like?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=0`)
         .then(resp => {
             db.saveSong(resp.data.seed, account_id, track_id)
                 .then(() => {
@@ -87,7 +87,7 @@ router.post('/save', authenticate, (req, res) => {
 */
 router.post('/singletrack', (req, res) => {
     const track_id = req.body.track_id
-    axios.get(`https://song-suggester.herokuapp.com/getlike?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=0`)
+    axios.get(`https://song-suggester.herokuapp.com/get_like?seed=${track_id || "0815epvZrVtP00ARbscMLt"}&num=0`)
         .then(resp => {
             // console.log(resp.data.seed)
             const song = resp.data.seed
