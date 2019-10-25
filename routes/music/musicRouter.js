@@ -18,7 +18,7 @@ module.exports = router;
  * @apiGroup Music
  * 
  * @apiParam {String} track_id The spotify track_id unique to each song.
- * @apiParam {Number} [account_id] THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.
+ * @apiParam {Number} [account_id] THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUNT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.
  * 
  * @apiParamExample Example body:
  * {
@@ -187,7 +187,7 @@ router.post('/similar', (req, res) => {
  *	"limit": 100
  *  }
  * 
- * @apiSuccess {Object[]} song An array with all returned song objects, which each include tack info and audio features.
+ * @apiSuccess {Object[]} array An array with all returned song objects, which each include tack info and audio features.
  * 
  * @apiSuccessExample Successful response: 
  *  HTTP/1.1 200 OK
