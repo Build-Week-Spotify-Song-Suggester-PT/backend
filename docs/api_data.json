@@ -31,7 +31,7 @@
   },
   {
     "type": "delete",
-    "url": "/accounts/:id",
+    "url": "/:id/favorites/:track_id",
     "title": "Delete song from favorites",
     "version": "0.1.0",
     "name": "Delete_song_from_favorites",

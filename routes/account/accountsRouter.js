@@ -154,7 +154,7 @@ router.get('/:id/favorites', authenticate, (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 /**
- * @api {delete} /accounts/:id Delete song from favorites
+ * @api {delete} /:id/favorites/:track_id Delete song from favorites
  * @apiVersion 0.1.0
  * @apiName Delete song from favorites
  * @apiGroup Accounts
