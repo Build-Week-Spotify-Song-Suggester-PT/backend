@@ -297,6 +297,52 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "https://song-suggester.herokuapp.com/compare?track_a=track_id_a&track_b=track_id_b",
+    "title": "(External API) Get a graph comparing 2 tracks.",
+    "version": "0.1.0",
+    "name": "Compare_2_songs",
+    "group": "Data_Viz",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "track_id_a",
+            "description": "<p>The track_id from the first song you want in the comparison.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "track_id_b",
+            "description": "<p>The track_id from the second song you want in the comparison.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "Directions:",
+            "description": "<p>The best way to use this endpoint would be to use it as a template string on the frontend. You could use it as a source for an iframe.</p> <p>Example URL: <code>https://song-suggester.herokuapp.com/compare?track_a=5lzb11BOouSBDXxhTnTtpv&amp;track_b=2fWgvpvay6JWLboUtfvitp</code>.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Successful response: ",
+          "content": " HTTP/1.1 200 OK\n{\n   Image: You'll get a radar chart that compares the audio features of two tracks. The image format is SVG.\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/account/accountsRouter.js",
+    "groupTitle": "Data_Viz"
+  },
+  {
+    "type": "post",
     "url": "/music/mood",
     "title": "Get songs by audio feature",
     "version": "0.1.0",
@@ -343,7 +389,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "Object[]",
             "optional": false,
-            "field": "song",
+            "field": "array",
             "description": "<p>An array with all returned song objects, which each include tack info and audio features.</p>"
           }
         ]
@@ -381,7 +427,7 @@ define({ "api": [
             "type": "Number",
             "optional": true,
             "field": "account_id",
-            "description": "<p>THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.</p>"
+            "description": "<p>THIS IS PULLED FROM THE TOKEN OF THE LOGGED IN ACCOUNT. Don't actually add it to the request -- just putting this here so we know that the songs will be saved to the currently logged in account.</p>"
           }
         ]
       },
