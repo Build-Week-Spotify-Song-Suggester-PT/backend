@@ -169,6 +169,7 @@ router.post('/similar', (req, res) => {
         .catch(err => res.status(500).json({error: err}))
 })
 
+
 // ---------- POST - send a song ID, get similar songs
 /**
  * @api {post} /music/mood Get songs by audio feature
@@ -341,7 +342,7 @@ router.post('/mood', (req, res) => {
                 max = 7
             }
         } else {
-            res.status(404).json({message: `Audio feature: ${feature} not found.`})
+            res.status(404).json({error: `Audio feature: ${feature} not found.`})
         }
         if (totalLimit > 500) {
             totalLimit = 500

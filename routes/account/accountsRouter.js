@@ -179,6 +179,27 @@ router.delete('/:id/favorites/:track_id', authenticate, (req, res) => {
     }
     
 })
+
+
+/**
+ * @api {post} https://song-suggester.herokuapp.com/compare?track_a=track_id_a&track_b=track_id_b (External API) Get a graph comparing 2 tracks. 
+ * @apiVersion 0.1.0
+ * @apiName Compare 2 songs
+ * @apiGroup Data Viz
+ * 
+ * @apiParam {string} track_id_a The track_id from the first song you want in the comparison.
+ * @apiParam {string} track_id_b The track_id from the second song you want in the comparison.
+ * @apiParam {string} [Directions:] The best way to use this endpoint would be to use it as a template string on the frontend. You could use it as a source for an iframe.
+ * 
+ * Example URL: `https://song-suggester.herokuapp.com/compare?track_a=5lzb11BOouSBDXxhTnTtpv&track_b=2fWgvpvay6JWLboUtfvitp`. 
+ * @apiSuccessExample Successful response: 
+ *  HTTP/1.1 200 OK
+ * {
+ *    Image: You'll get a radar chart that compares the audio features of two tracks. The image format is SVG.
+ * }
+*/
+
+
 /**
  * @api {delete} /accounts/:id Delete account
  * @apiVersion 0.1.0
